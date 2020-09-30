@@ -27,11 +27,13 @@
         android:id="@+id/checkBox"
         android:layout_width="201dp"
         android:layout_height="wrap_content"
-        android:text="Check it out"
-        android:layout_alignBottom="@+id/button"
-        android:layout_toRightOf="@+id/button"
         android:layout_below="@+id/myTextView"
-        />
+        android:layout_alignBottom="@+id/button"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="-2dp"
+        android:layout_toRightOf="@+id/button"
+        android:text="Check it out" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -44,8 +46,8 @@
         android:layout_width="182dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/checkBox"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="83dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="43dp"
         android:layout_toRightOf="@+id/imageView"
         android:text="Switch On/Off"
         android:textSize="20dp" />
