@@ -26,14 +26,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);//this load the layout of screen
 
-        TextView textView=findViewById(R.id.Textview);
+        TextView textView=findViewById(R.id.myTextView);
 
         Button button=findViewById(R.id.button);
         button.setOnClickListener( (v) -> { Toast.makeText(this, this.getResources().getString(R.string.toast_message), LENGTH_LONG).show(); ; } );
 
 
 
-        Switch onOffSwitch =  findViewById(R.id.switch2);
+        Switch onOffSwitch =  findViewById(R.id.switch1);
         onOffSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
