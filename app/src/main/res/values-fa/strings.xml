@@ -3,5 +3,6 @@
     <string name="app_name">Android Labs</string>
     <string name="hello">سلام!</string>
     <string name="Look">Look at my GUI</string>
+    <string name="toast_message">ایجا اطلاعات زیادی!</string>
 
 </resources>

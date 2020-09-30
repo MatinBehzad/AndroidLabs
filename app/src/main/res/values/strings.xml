@@ -2,5 +2,6 @@
     <string name="app_name">Android Labs</string>
     <string name="hello">Hello World!</string>
     <string name="Look">look at my GUI</string>
+    <string name="toast_message">there is more informatin here!</string>
 
 </resources>
