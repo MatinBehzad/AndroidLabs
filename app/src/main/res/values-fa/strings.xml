@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Android Labs</string>
-    <string name="hello">سلام!</string>
+    <string name="toast_message">اطلاعات بیشتری اینجا</string>
     <string name="ButtonText">I’m a button</string>
 
 </resources>
