@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">AndroidsLab</string>
     <string name="Look">ایمل خود را وارد کنید</string>
     <string name="profileActivity">لاگین</string>
     <string name="yourname">نام:</string>

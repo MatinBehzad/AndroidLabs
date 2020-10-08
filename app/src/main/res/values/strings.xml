@@ -1,5 +1,5 @@
 <resources>
-
+    <string name="app_name">AndroidsLab</string>
     <string name="Look">ٍEnter your Email</string>
     <string name="profileActivity">Profile Activity</string>
     <string name="yourname">your name:</string>
