@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Android Labs</string>
-    <string name="hello">سلام!</string>
-    <string name="Look">Enter your Email address:</string>
-    <string name="toast_message">ایجا اطلاعات زیادی!</string>
 
+    <string name="profileActivity">لاگین</string>
+    <string name="yourname">نام:</string>
+    <string name="YourEmail">ایمیل:</string>
+    <string name="YourPicture">عکس شما:</string>
+    <string name="picture">دکمهی بالا را بزن</string>
 </resources>

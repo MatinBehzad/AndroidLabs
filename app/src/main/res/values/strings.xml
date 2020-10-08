@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">Android Labs</string>
-    <string name="hello">Hello World!</string>
-    <string name="Look">Enter your Email address:</string>
-    <string name="toast_message">there is more informatin here!</string>
+
+    <string name="profileActivity">Profile Activity</string>
+    <string name="yourname">your name:</string>
+    <string name="YourEmail">your Email:</string>
+    <string name="YourPicture">your picture</string>
+    <string name="picture">click the button for taking picture</string>
 
 </resources>
