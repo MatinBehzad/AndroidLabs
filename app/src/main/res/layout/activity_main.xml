@@ -35,7 +35,7 @@
         android:layout_column="0"
         android:layout_columnWeight="1"
         android:layout_gravity="fill_horizontal"
-        android:text="Type your password:"
+        android:text="@string/password"
         android:textSize="30dp" />
 
     <EditText

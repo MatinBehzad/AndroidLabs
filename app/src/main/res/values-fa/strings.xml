@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="Look">ایمل خود را وارد کنید</string>
     <string name="profileActivity">لاگین</string>
     <string name="yourname">نام:</string>
     <string name="YourEmail">ایمیل:</string>
     <string name="YourPicture">عکس شما:</string>
     <string name="picture">دکمهی بالا را بزن</string>
+    <string name="password">پس را وارد کنید</string>
 </resources>
