@@ -1,7 +1,7 @@
 package com.example.androidlabs;
-
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.service.autofill.FillEventHistory;
@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     EditText typeField;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {// like main in java
 
@@ -35,14 +36,23 @@ public class MainActivity extends AppCompatActivity {
         typeField.setText(savedString);
 
         saveButton = findViewById(R.id.button);
-        onPause();
+        saveButton.setOnClickListener(new View.OnClickListener() {
 
+            public void onClick(View v){
+
+
+                Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
+                goToProfile.putExtra("Email", typeField.getText().toString());
+                startActivity(goToProfile);
+            }
+
+        } );
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        saveButton.setOnClickListener(bt -> saveSharedPrefs(typeField.getText().toString()));
+        saveSharedPrefs(typeField.getText().toString());
 
     }
 
@@ -51,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("EmailAddress",stringToSave);
         editor.commit();
     }
+
 
 
 }
