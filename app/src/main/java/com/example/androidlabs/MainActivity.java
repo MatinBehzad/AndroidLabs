@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {// like main in java
-
+//comits
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);//this load the layout of screen
 
@@ -32,16 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
         Switch onOffSwitch =  findViewById(R.id.switch2);
         onOffSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-=======
-//adding a comint
-                Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
-                goToProfile.putExtra("Email", typeField.getText().toString());
-                startActivity(goToProfile);
-            }
-
 
             @Override
             public void onCheckedChanged(CompoundButton cb, boolean b) {
