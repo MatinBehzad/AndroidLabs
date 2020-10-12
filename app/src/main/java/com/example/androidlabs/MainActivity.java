@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener( (v) -> { Toast.makeText(this, this.getResources().getString(R.string.toast_message), LENGTH_LONG).show(); ; } );
 
 
-<<<<<<< Updated upstream
+
 
         Switch onOffSwitch =  findViewById(R.id.switch2);
         onOffSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 goToProfile.putExtra("Email", typeField.getText().toString());
                 startActivity(goToProfile);
             }
->>>>>>> Stashed changes
+
 
             @Override
             public void onCheckedChanged(CompoundButton cb, boolean b) {
