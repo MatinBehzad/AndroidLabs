@@ -4,7 +4,7 @@
     <string name="profileActivity">Profile Activity</string>
     <string name="yourname">your name:</string>
     <string name="YourEmail">your Email:</string>
-    <string name="YourPicture">your picture</string>
+    <string name="YourPicture">your picture:</string>
     <string name="picture">click the button for taking picture</string>
     <string name="password">ٍEnter your password:</string>
 

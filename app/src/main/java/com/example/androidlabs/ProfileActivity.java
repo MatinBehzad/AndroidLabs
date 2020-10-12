@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -29,6 +30,25 @@ public class ProfileActivity extends AppCompatActivity {
 
         mImageButton=(ImageButton)findViewById(R.id.button2);
         mImageButton.setOnClickListener(bt ->  dispatchTakePictureIntent());
+
+        /*2.	Add a button to the to your ProfileActivity from Lab 3.
+        Set the text of the button to be: “Go to chat”.
+         Set an onClick listener of the button to go to a new activity,
+          called “ChatRoomActivity”. You can create the activity in AndroidStudio by
+          selecting “File” -> “New” ->  “Activity” -> “Empty Activity”, and give it the name ChatRoomActivity
+         */
+
+        Button chatRoom=findViewById(R.id.button3);
+        chatRoom.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v){
+                Intent goToProfile = new Intent(ProfileActivity.this, ChatRoomActivity.class);
+                startActivity(goToProfile);
+            }
+
+        } );
+
+
 
         Log.e("PROFILE_ACTIVITY","function is" + "onCreate");
 

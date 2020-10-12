@@ -97,8 +97,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignBottom="@id/textView4"
-        android:src="@android:drawable/picture_frame"
-        />
+        android:layout_marginBottom="-73dp"
+        android:src="@android:drawable/picture_frame" />
 
     <TextView
         android:id="@+id/textView5"
@@ -107,12 +107,21 @@
         android:layout_columnWeight="1"
         android:layout_alignBottom="@id/button2"
         android:layout_gravity="fill_horizontal"
-        android:layout_marginBottom="-51dp"
+        android:layout_marginBottom="-53dp"
         android:text="@string/picture"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="396dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/textView5"
+        android:layout_marginBottom="-39dp"
+        android:text="Go To Chat!"
+        />
 
 
 </RelativeLayout>

@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v){
-
-
                 Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
                 goToProfile.putExtra("Email", typeField.getText().toString());
                 startActivity(goToProfile);
