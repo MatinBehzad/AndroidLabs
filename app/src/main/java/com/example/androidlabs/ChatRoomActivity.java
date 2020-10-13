@@ -17,7 +17,7 @@ import java.util.Arrays;
 public class ChatRoomActivity extends AppCompatActivity {
 
     private MyListAdapter myAdapter;
-    private ArrayList<String> elements = new ArrayList<>(Arrays.asList( "One", "Two" ));
+    private ArrayList<String> elements = new ArrayList<>();
     public boolean clickButton=false;
 
 
@@ -43,10 +43,11 @@ public class ChatRoomActivity extends AppCompatActivity {
         } );
 
         Button receive=findViewById(R.id.button8);
-        send.setOnClickListener(new View.OnClickListener() {
+        receive.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v){
                 new ChatRoomActivity.Message().recieve();
+                clickButton=false;
 
             }
 
@@ -69,25 +70,23 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
 
         public View getView(int position, View old, ViewGroup parent) {
-            View newView = null;
+
+
+            LayoutInflater inflater = getLayoutInflater();
+            View newView = inflater.inflate(R.layout.row_layout, parent, false);
 
             if(clickButton==true) {
-                LayoutInflater inflater = getLayoutInflater();
-                newView = inflater.inflate(R.layout.row_layout, parent, false);
+
                 TextView tView = newView.findViewById(R.id.textGoesHere);
                 tView.setText(getItem(position).toString());
             }
 
             else{
 
-                LayoutInflater inflater = getLayoutInflater();
-                newView = inflater.inflate(R.layout.recieve_layout, parent, false);
                 TextView tView = newView.findViewById(R.id.recieve);
                 tView.setText(getItem(position).toString());
 
             }
-
-
 
             return newView;
         }
