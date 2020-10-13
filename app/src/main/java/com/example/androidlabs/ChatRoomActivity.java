@@ -1,12 +1,7 @@
 package com.example.androidlabs;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,9 +17,9 @@ import java.util.Arrays;
 public class ChatRoomActivity extends AppCompatActivity {
 
     private MyListAdapter myAdapter;
-   // private Message message=new Message();
-    private ArrayList<String> elements = new ArrayList<>();
-    SharedPreferences sharedpref=null;
+    private ArrayList<String> elements = new ArrayList<>(Arrays.asList( "One", "Two" ));
+    public boolean clickButton=false;
+
 
 
 
@@ -36,27 +31,37 @@ public class ChatRoomActivity extends AppCompatActivity {
         ListView list=findViewById(R.id.theListView);
         list.setAdapter(myAdapter=new MyListAdapter() );
 
-        /*Button send=findViewById(R.id.button7);
+
+        Button send=findViewById(R.id.button7);
         send.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v){
-
-                elements.add("Hi");
-                myAdapter.notifyDataSetChanged();
+                new ChatRoomActivity.Message().save();
+                clickButton=true;
             }
 
-        } );*/
+        } );
+
+        Button receive=findViewById(R.id.button8);
+        send.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v){
+                new ChatRoomActivity.Message().recieve();
+
+            }
+
+        } );
     }
 
 
     private class MyListAdapter extends BaseAdapter {
 
         public int getCount() {
-            return 3;//elements.size();
+            return elements.size();
         }
 
         public String getItem(int position) {
-            return "This is row " + position;
+            return  elements.get(position);
         }
 
         public long getItemId(int position) {
@@ -64,35 +69,56 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
 
         public View getView(int position, View old, ViewGroup parent) {
+            View newView = null;
 
-            LayoutInflater inflater = getLayoutInflater();
-            View newView = inflater.inflate(R.layout.row_layout, parent, false);
-            TextView tView = newView.findViewById(R.id.textGoesHere);
-            tView.setText( getItem(position) );
+            if(clickButton==true) {
+                LayoutInflater inflater = getLayoutInflater();
+                newView = inflater.inflate(R.layout.row_layout, parent, false);
+                TextView tView = newView.findViewById(R.id.textGoesHere);
+                tView.setText(getItem(position).toString());
+            }
 
-         /*  TextView v=new TextView(ChatRoomActivity.this);
-           v.setText(getItem(position));
+            else{
 
-            return v;*/
-         return newView;
+                LayoutInflater inflater = getLayoutInflater();
+                newView = inflater.inflate(R.layout.recieve_layout, parent, false);
+                TextView tView = newView.findViewById(R.id.recieve);
+                tView.setText(getItem(position).toString());
+
+            }
+
+
+
+            return newView;
         }
     }
 
-    private class Message{
+    private class Message {
 
 
-        SharedPreferences sharedpref=getSharedPreferences("FileName",Context.MODE_PRIVATE);;
-        EditText text=findViewById(R.id.editChatMessage);
-        String savedString = sharedpref.getString("ChatMessage","Default Value");
+        public EditText meaage=findViewById(R.id.editChatMessage);
 
-       /* typeField=findViewById(R.id.editText1);
-        typeField.setText(savedString);*/
+        public void save(){
 
+                    elements.add(meaage.getText().toString());
+                    meaage.getText().clear();
+                    myAdapter.notifyDataSetChanged();
 
-        private void saveSharedPrefs(String stringToSave){
-            SharedPreferences.Editor editor=sharedpref.edit();
-            editor.putString("ChatMessage",stringToSave);
-            editor.commit();
+        }
+
+        private EditText getText() {
+            return this.meaage;
+        }
+
+        private void setText(EditText message){
+            this.meaage=message;
+        }
+
+        public void recieve(){
+
+            elements.add(meaage.getText().toString());
+            meaage.getText().clear();
+            myAdapter.notifyDataSetChanged();
         }
 
     }
