@@ -24,7 +24,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_room);
 
         ListView list=findViewById(R.id.theListView);
-        list.setAdapter(myAdapter);
+        list.setAdapter(myAdapter=new MyListAdapter() );
 
 
 
@@ -37,7 +37,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             return 5;//elements.size();
         }
 
-        public Object getItem(int position) {
+        public String getItem(int position) {
             return "This is row " + position;
         }
 
@@ -47,12 +47,14 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         public View getView(int position, View old, ViewGroup parent) {
 
-            LayoutInflater inflater = getLayoutInflater();
+           /* LayoutInflater inflater = getLayoutInflater();
             View newView = inflater.inflate(R.layout.row_layout, parent, false);
             TextView tView = newView.findViewById(R.id.textGoesHere);
-            tView.setText( getItem(position).toString() );
+            tView.setText( getItem(position).toString() );*/
+           TextView v=new TextView(ChatRoomActivity.this);
+           v.setText(getItem(position));
 
-            return newView;
+            return v;
 
         }
     }
