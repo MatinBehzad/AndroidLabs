@@ -6,9 +6,11 @@
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:id="@+id/recieve"
-        android:layout_alignParentRight="false"
-        android:drawableLeft="@drawable/female"
+        android:id="@+id/textGoesHere"
+        android:gravity="right"
+        android:drawableRight="@drawable/female"
         />
+
+
 
 </LinearLayout>

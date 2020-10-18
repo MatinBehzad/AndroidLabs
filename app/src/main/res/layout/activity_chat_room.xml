@@ -7,27 +7,23 @@
     tools:context=".ChatRoomActivity"
     tools:visibility="visible">
 
-    <ListView
+        <ListView
         android:id="@+id/theListView"
         android:layout_width="match_parent"
-        android:layout_height="197dp"
-        >
-
-    </ListView>
-
-     <LinearLayout
+        android:layout_height="325dp"/>
+    <LinearLayout
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SEND" />
+         <Button
+             android:id="@+id/button7"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="SEND" />
 
-        <EditText
+         <EditText
             android:id="@+id/editChatMessage"
             android:layout_width="232dp"
             android:layout_height="wrap_content"
@@ -42,7 +38,10 @@
             android:layout_height="wrap_content"
             android:text="RECIVE" />
 
+
     </LinearLayout>
+
+
 
 
 </LinearLayout>
