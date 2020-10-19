@@ -23,7 +23,7 @@ import java.util.Arrays;
 public class ChatRoomActivity extends AppCompatActivity {
 
     private MyListAdapter myAdapter;
-    private ArrayList<String> elements = new ArrayList<>(Arrays.asList());
+    private ArrayList<Message> elements = new ArrayList<>();
     private Message mi=new Message();
 
 
@@ -65,9 +65,9 @@ public class ChatRoomActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 EditText meaage = findViewById(R.id.editChatMessage);
-                elements.add(meaage.getText().toString());
+
                 String mess=meaage.getText().toString();
-               mi= new Message(mess,true);
+                elements.add(new Message(mess,true));
                 meaage.setText("");
                 myAdapter.notifyDataSetChanged();
 
@@ -81,9 +81,9 @@ public class ChatRoomActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 EditText meaage = findViewById(R.id.editChatMessage);
-                elements.add(meaage.getText().toString());
+
                 String mess=meaage.getText().toString();
-                mi= new Message(mess,false);
+                elements.add(new Message(mess,false));
                 meaage.setText("");
                 myAdapter.notifyDataSetChanged();
 
@@ -101,7 +101,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             return elements.size();
         }
 
-        public String getItem(int position) {
+        public Message getItem(int position) {
             return elements.get(position);
         }
 
@@ -114,13 +114,12 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             LayoutInflater inflater = getLayoutInflater();
 
+       Message mi = getItem(position);
 
 
-
-                if (position%2==0) {
+                if (mi.isSendMessage()) {
 
                     old = inflater.inflate(R.layout.row_layout, parent, false);
-
                 }
                 else {
 
@@ -128,7 +127,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                 }
 
                     TextView tView = old.findViewById(R.id.textGoesHere);
-                    tView.setText(getItem(position).toString());
+                    tView.setText(getItem(position).getMessage());
                     return old;
 
 

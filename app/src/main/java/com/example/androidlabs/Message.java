@@ -1,8 +1,9 @@
 
 
 package com.example.androidlabs;
-import androidx.appcompat.app.AppCompatActivity;
-public class Message extends AppCompatActivity {
+
+
+public class Message  {
 
     private String message;
     private boolean isSend;
