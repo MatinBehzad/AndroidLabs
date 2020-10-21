@@ -24,7 +24,6 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     private MyListAdapter myAdapter;
     private ArrayList<Message> elements = new ArrayList<>();
-    private Message mi=new Message();
 
 
 
@@ -67,7 +66,8 @@ public class ChatRoomActivity extends AppCompatActivity {
                 EditText meaage = findViewById(R.id.editChatMessage);
 
                 String mess=meaage.getText().toString();
-                elements.add(new Message(mess,true));
+                Message mio=new Message(mess,true);
+                elements.add(mio);
                 meaage.setText("");
                 myAdapter.notifyDataSetChanged();
 
@@ -83,7 +83,8 @@ public class ChatRoomActivity extends AppCompatActivity {
                 EditText meaage = findViewById(R.id.editChatMessage);
 
                 String mess=meaage.getText().toString();
-                elements.add(new Message(mess,false));
+                Message mio=new Message(mess,false);
+                elements.add(mio);
                 meaage.setText("");
                 myAdapter.notifyDataSetChanged();
 
@@ -114,7 +115,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             LayoutInflater inflater = getLayoutInflater();
 
-       Message mi = getItem(position);
+            Message mi = getItem(position);
 
 
                 if (mi.isSendMessage()) {
