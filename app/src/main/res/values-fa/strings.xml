@@ -8,4 +8,7 @@
     <string name="YourPicture">عکس شما:</string>
     <string name="picture">دکمهی بالا را بزن</string>
     <string name="password">پس را وارد کنید</string>
+    <string name="Recive">دریافت</string>
+    <string name="send">ارسال</string>
+    <string name="type">اینجا بنویس</string>
 </resources>

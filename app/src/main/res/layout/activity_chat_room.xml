@@ -21,7 +21,7 @@
              android:id="@+id/button7"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:text="SEND" />
+             android:text="@string/send" />
 
          <EditText
             android:id="@+id/editChatMessage"
@@ -29,14 +29,14 @@
             android:layout_height="wrap_content"
             android:layout_columnSpan="2"
             android:layout_marginBottom="-50dp"
-            android:hint="Type here"
+            android:hint="@string/type"
             android:textSize="20dp" />
 
         <Button
             android:id="@+id/button8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RECIVE" />
+            android:text="@string/Recive" />
 
 
     </LinearLayout>
