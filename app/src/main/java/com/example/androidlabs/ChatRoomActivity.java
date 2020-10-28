@@ -34,6 +34,9 @@ public class ChatRoomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_room);
 
         ListView list = findViewById(R.id.theListView);
+
+        loadDataFromDatabase();
+
         list.setAdapter(myAdapter = new MyListAdapter());
 
 
@@ -107,7 +110,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
 
         public long getItemId(int position) {
-            return (long) position;
+            return getItem(position).getId();
         }
 
         public View getView(int position, View old, ViewGroup parent) {
