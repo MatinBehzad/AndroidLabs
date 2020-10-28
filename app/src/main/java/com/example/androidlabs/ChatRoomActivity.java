@@ -93,7 +93,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         });
     }
-
+//•	You can select a chat row to view an AlertDialog with the index and database id	+1
 
     private class MyListAdapter extends BaseAdapter {
 
