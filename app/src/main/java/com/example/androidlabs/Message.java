@@ -9,15 +9,15 @@ public class Message  {
     private boolean isSend;
     protected long id;
 
-
-
     public Message(String message, boolean isSend, long i){
         this.message=message;
         this.isSend=isSend;
         this.id=i;
     }
 
-    public Message(String n, boolean e) { this(n, e, 0);}
+    public Message(String n, boolean e) {
+        this(n, e, 0);
+    }
 
     public void update(String n, boolean e)
     {
@@ -33,8 +33,6 @@ public class Message  {
         return isSend;
     }
 
-    public long getId() {
-        return id;
-    }
+    public long getId() { return id; }
 }
 

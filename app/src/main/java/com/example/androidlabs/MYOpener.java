@@ -26,14 +26,11 @@ public class MYOpener extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_NAME + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COL_Message + " text);");  // add or remove columns
     }
-
-
     //this function gets called if the database version on your device is lower than VERSION_NUM
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {   //Drop the old table:
         db.execSQL( "DROP TABLE IF EXISTS " + TABLE_NAME);
-
         //Create the new table:
         onCreate(db);
     }
@@ -41,9 +38,9 @@ public class MYOpener extends SQLiteOpenHelper {
     //this function gets called if the database version on your device is higher than VERSION_NUM
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion)
+
     {   //Drop the old table:
         db.execSQL( "DROP TABLE IF EXISTS " + TABLE_NAME);
-
         //Create the new table:
         onCreate(db);
     }
