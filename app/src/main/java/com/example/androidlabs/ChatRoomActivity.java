@@ -3,8 +3,8 @@ package com.example.androidlabs;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static android.widget.Toast.LENGTH_LONG;
 
 
 public class ChatRoomActivity extends AppCompatActivity {
@@ -34,75 +35,128 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         ListView list = findViewById(R.id.theListView);
 
-        loadDataFromDatabase();
+
 
         list.setAdapter(myAdapter = new MyListAdapter());
+        loadDataFromDatabase();
 
-
-        list.setOnItemLongClickListener( (p, b, pos, id) -> {
-
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            alertDialogBuilder.setTitle("A title");
-            alertDialogBuilder.setMessage("Do you want to delete?");
-
-
-            alertDialogBuilder.setPositiveButton("Yes", (click, arg) -> {
-                elements.remove(pos);
-                myAdapter.notifyDataSetChanged();
-            });
-
-            alertDialogBuilder .setNegativeButton("No",(click, arg) -> {});
-
-            alertDialogBuilder.show();
-            return true;
+        list.setOnItemClickListener(( parent,  view,  position,  id) -> {
+            showContact( position );
         });
 
+
         Button send = findViewById(R.id.button7);
-        send.setOnClickListener(new View.OnClickListener() {
+        send.setOnClickListener(click ->
 
-            public void onClick(View v) {
-
-                EditText meaage = findViewById(R.id.editChatMessage);
+             {
+                 EditText meaage = findViewById(R.id.editChatMessage);
                 String mess=meaage.getText().toString();
-
+                boolean b=true;
                 ContentValues newRowValues =new ContentValues();
 
                 newRowValues.put(MYOpener.COL_Message,mess);
+               // newRowValues.put(MYOpener.COL_ISSEND,b);
 
                 long newId =db.insert(MYOpener.TABLE_NAME,null,newRowValues);
 
 
-                Message mio=new Message(mess,true);
+
+
+                Message mio=new Message(mess,b);
                 elements.add(mio);
                 myAdapter.notifyDataSetChanged();
 
                 meaage.setText("");
 
-                Toast.makeText(this,"inserted item id:"+newId,Toast.LENGTH_LONG).show();
 
 
-            }
-        });
+             });
 
         Button receive = findViewById(R.id.button8);
-        receive.setOnClickListener(new View.OnClickListener() {
+        receive.setOnClickListener(click ->{
 
-            public void onClick(View v) {
+
 
                 EditText meaage = findViewById(R.id.editChatMessage);
-
                 String mess=meaage.getText().toString();
-                Message mio=new Message(mess,false);
+                boolean f=false;
+
+                ContentValues newRowValues =new ContentValues();
+                newRowValues.put(MYOpener.COL_Message,mess);
+                //newRowValues.put(MYOpener.COL_ISSEND,f);
+
+                long newId =db.insert(MYOpener.TABLE_NAME,null,newRowValues);
+
+
+                Message mio=new Message(mess,f);
                 elements.add(mio);
-                meaage.setText("");
+
                 myAdapter.notifyDataSetChanged();
-            }
+
+                meaage.setText("");
+
 
         });
+
+    }
+
+    protected void deleteContact(Message c)
+    {
+        db.delete(MYOpener.TABLE_NAME, MYOpener.COL_ID + "= ?", new String[] {Long.toString(c.getId())});
     }
 
     private void loadDataFromDatabase(){
 
+
+
+        MYOpener dbOpener =new MYOpener(this);
+
+        db=dbOpener.getWritableDatabase();
+
+        String [] columns= {MYOpener.COL_ID,MYOpener.COL_Message};
+
+
+
+        Cursor results = db.query(false, MYOpener.TABLE_NAME, columns,
+                null, null, null, null, null, null);
+
+        int messageCol = results.getColumnIndex(MYOpener.COL_Message);
+        int idCol= results.getColumnIndex(MYOpener.COL_ID);
+    //    int send =results.getColumnIndex(MYOpener.COL_ISSEND);
+
+
+        while(results.moveToNext())
+        {
+            String payam = results.getString(messageCol);
+            long id = results.getLong(idCol);
+         //   boolean se=results.moveToPosition(send);
+
+            //add the new Contact to the array list:
+            elements.add(new Message(payam,id));
+        }
+
+    }
+
+    protected void showContact(int position)
+    {
+        Message selectedContact = elements.get(position);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("DELETE" + position)
+                .setMessage("DO YOU WANT TO DELETE?")
+
+
+                .setPositiveButton("YES", (click, b) -> {
+                    deleteContact(selectedContact); //remove the contact from database
+                    elements.remove(position); //remove the contact from contact list
+                    myAdapter.notifyDataSetChanged(); //there is one less item so update the list
+
+                   Toast.makeText(this,"deleted item id:"+myAdapter.getItemId(position),Toast.LENGTH_LONG).show();
+
+                })
+
+                .setNegativeButton("No", (click, b) -> { })
+                .create().show();
     }
 //•	You can select a chat row to view an AlertDialog with the index and database id	+1
 

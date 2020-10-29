@@ -6,10 +6,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MYOpener extends SQLiteOpenHelper {
 
-    protected final static String DATABASE_NAME = "ContactsDB";
-    protected final static int VERSION_NUM = 1;
+    protected final static String DATABASE_NAME = "ContactsDBMS";
+    protected final static int VERSION_NUM = 6;
     public final static String TABLE_NAME = "Message";
     public final static String COL_Message = "Text";
+    public final static String COL_ISSEND = "Boolean";
     public final static String COL_ID = "_id";
 
     public MYOpener(Context ctx)
@@ -24,7 +25,8 @@ public class MYOpener extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db)
     {
         db.execSQL("CREATE TABLE " + TABLE_NAME + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + COL_Message + " text);");  // add or remove columns
+                + COL_Message + " text,"
+                + COL_ISSEND + "boolean);");  // add or remove columns
     }
     //this function gets called if the database version on your device is lower than VERSION_NUM
     @Override
