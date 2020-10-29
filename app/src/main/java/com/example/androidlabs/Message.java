@@ -19,16 +19,12 @@ public class Message  {
         this(n, e, 0);
     }
 
-    public Message(String n, long id) {
-        this(n,true,id);
-    }
 
-
-    public void update(String n, boolean e)
+    /*public void update(String n, boolean e)
     {
         this.message= n;
         this.isSend = e;
-    }
+    }*/
 
     public String getMessage(){
         return message;
