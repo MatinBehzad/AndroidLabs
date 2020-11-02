@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,6 +92,8 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         });
 
+
+
     }
 
     protected void deleteContact(Message c)
@@ -102,27 +105,32 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 
 
+        Log.e("VersionNumber", String.valueOf(db.getVersion()));
+        Log.e("ColumnNumber", String.valueOf(c.getColumnCount()));
+        for(int i=0; i<c.getColumnCount();i++) {
+            Log.e("ColumnName"+ i, c.getColumnName(i).toString());
+        }
+        Log.e("RowsNumber", String.valueOf(c.getCount()));
+
+        c.moveToPosition(-1);
+
+        while(c.moveToNext())
+        {
+
+            String name = c.getString(2);
+            Boolean sr =  c.getInt(1)==1 ? true: false;
+            long id = c.getLong(0);
+            Log.e("RowAmount"  , name + ","  + sr + "," + id );
+
+
+        }
+
     }
 
     private void loadDataFromDatabase(){
         //get a database connection:
         MYopener dbOpener = new MYopener(this);
         db = dbOpener.getWritableDatabase(); //This calls onCreate() if you've never built the table before, or onUpgrade if the version here is newer
-
-       /* String selectQuery = "SELECT  * FROM " + dbOpener.TABLE_NAME;
-        db = dbOpener.getWritableDatabase();
-
-        Cursor cursor = db.rawQuery(selectQuery,null,null);
-
-        if(cursor.moveToFirst()){
-            do {
-                Message r =new Message();
-                r.setMessage(cursor.getString(cursor.getColumnIndex(MYopener.COL_Message)));
-               r.isSendMessage(cursor.getInt(cursor.getColumnIndex(MYopener.COL_ISSEND)==1 ? true: false;);
-               r.setId(cursor.getLong(cursor.getColumnIndex(MYopener.COL_ID)));
-               elements.add(r);
-            } while (cursor.moveToNext());
-        }*/
 
        // We want to get all of the columns. Look at MyOpener.java for the definitions:
         String [] columns = {MYopener.COL_ID, String.valueOf(MYopener.COL_ISSEND), MYopener.COL_Message};
@@ -146,6 +154,8 @@ public class ChatRoomActivity extends AppCompatActivity {
             //add the new Contact to the array list:
             elements.add(new Message(name, sr, id));
         }
+
+        printCursor( results, 4);
 
         //At this point, the contactsList array has loaded every row from the cursor.
 
