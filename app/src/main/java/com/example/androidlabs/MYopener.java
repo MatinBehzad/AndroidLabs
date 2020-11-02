@@ -10,10 +10,10 @@ public class MYopener extends SQLiteOpenHelper {
 
 
         protected final static String DATABASE_NAME = "ContactsDB";
-        protected final static int VERSION_NUM = 1;
+        protected final static int VERSION_NUM = 4;
         public final static String TABLE_NAME = "Message";
         public final static String COL_Message = "Text";
-        public final static String COL_ISSEND = "Boolean";
+        public final static String COL_ISSEND = "t";
         public final static String COL_ID = "_id";
 
         public MYopener(Context ctx)
@@ -27,7 +27,7 @@ public class MYopener extends SQLiteOpenHelper {
         {
             db.execSQL("CREATE TABLE " + TABLE_NAME + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + COL_Message + " text,"
-                    + COL_ISSEND + "boolean);");  // add or remove columns
+                    + COL_ISSEND + " boolean);");  // add or remove columns
         }
 
         @Override

@@ -34,9 +34,9 @@ public class ChatRoomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_room);
 
         ListView list = (ListView)findViewById(R.id.theListView);
-        loadDataFromDatabase();
-        list.setAdapter(myAdapter = new MyListAdapter());
 
+        list.setAdapter(myAdapter = new MyListAdapter());
+        loadDataFromDatabase();
 
         list.setOnItemClickListener(( parent,  view,  position,  id) -> {
             showContact( position );
@@ -53,7 +53,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                 ContentValues newRowValues =new ContentValues();
 
                newRowValues.put(MYopener.COL_Message,mess);
-               newRowValues.put(MYopener.COL_ISSEND,positive);
+               newRowValues.put(String.valueOf(MYopener.COL_ISSEND),positive);
                long newId =db.insert(MYopener.TABLE_NAME,null,newRowValues);
 
 
@@ -77,7 +77,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                 ContentValues newRowValues =new ContentValues();
                 newRowValues.put(MYopener.COL_Message,mess);
-                newRowValues.put(MYopener.COL_ISSEND,negetive);
+                newRowValues.put(String.valueOf(MYopener.COL_ISSEND),negetive);
                 long newId =db.insert(MYopener.TABLE_NAME,null,newRowValues);
 
 
@@ -98,17 +98,34 @@ public class ChatRoomActivity extends AppCompatActivity {
        db.delete(MYopener.TABLE_NAME, MYopener.COL_ID + "= ?", new String[] {Long.toString(c.getId())});
     }
 
+    protected void printCursor( Cursor c, int version){
+
+
+
+    }
+
     private void loadDataFromDatabase(){
-
-
-
         //get a database connection:
         MYopener dbOpener = new MYopener(this);
         db = dbOpener.getWritableDatabase(); //This calls onCreate() if you've never built the table before, or onUpgrade if the version here is newer
 
+       /* String selectQuery = "SELECT  * FROM " + dbOpener.TABLE_NAME;
+        db = dbOpener.getWritableDatabase();
 
-        // We want to get all of the columns. Look at MyOpener.java for the definitions:
-        String [] columns = {MYopener.COL_ID, MYopener.COL_ISSEND, MYopener.COL_Message};
+        Cursor cursor = db.rawQuery(selectQuery,null,null);
+
+        if(cursor.moveToFirst()){
+            do {
+                Message r =new Message();
+                r.setMessage(cursor.getString(cursor.getColumnIndex(MYopener.COL_Message)));
+               r.isSendMessage(cursor.getInt(cursor.getColumnIndex(MYopener.COL_ISSEND)==1 ? true: false;);
+               r.setId(cursor.getLong(cursor.getColumnIndex(MYopener.COL_ID)));
+               elements.add(r);
+            } while (cursor.moveToNext());
+        }*/
+
+       // We want to get all of the columns. Look at MyOpener.java for the definitions:
+        String [] columns = {MYopener.COL_ID, String.valueOf(MYopener.COL_ISSEND), MYopener.COL_Message};
         //query all the results from the database:
         Cursor results = db.query(false, MYopener.TABLE_NAME, columns,
                 null, null, null, null, null, null);
@@ -116,14 +133,14 @@ public class ChatRoomActivity extends AppCompatActivity {
         //Now the results object has rows of results that match the query.
         //find the column indices:
         int messageColumnIndex = results.getColumnIndex(MYopener.COL_Message);
-        int sendColIndex = results.getColumnIndex(MYopener.COL_ISSEND);
+        int sendColIndex = results.getColumnIndex(String.valueOf(MYopener.COL_ISSEND));
         int idColIndex = results.getColumnIndex(MYopener.COL_ID);
 
         //iterate over the results, return true if there is a next item:
         while(results.moveToNext())
         {
             String name = results.getString( messageColumnIndex);
-            boolean sr =  Boolean.parseBoolean(results.getString(sendColIndex));
+           Boolean sr =  results.getInt(sendColIndex)==1 ? true: false;
             long id = results.getLong(idColIndex);
 
             //add the new Contact to the array list:
@@ -131,10 +148,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
 
         //At this point, the contactsList array has loaded every row from the cursor.
-
-
-
-
 
     }
 
@@ -149,14 +162,15 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                 .setPositiveButton("YES", (click, b) -> {
                     deleteContact(selectedContact); //remove the contact from database
+                    Toast.makeText(this,"deleted item id:"+myAdapter.getItemId(position),Toast.LENGTH_LONG).show();
                     elements.remove(position); //remove the contact from contact list
                     myAdapter.notifyDataSetChanged(); //there is one less item so update the list
 
-                   Toast.makeText(this,"deleted item id:"+myAdapter.getItemId(position),Toast.LENGTH_LONG).show();
+
 
                 })
 
-                .setNegativeButton("No", (click, b) -> { })
+                .setNegativeButton("No", (click, b) -> {  })
                 .create().show();
     }
 //•	You can select a chat row to view an AlertDialog with the index and database id	+1
