@@ -162,8 +162,10 @@ public class ChatRoomActivity extends AppCompatActivity {
         Message selectedContact = elements.get(position);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
         builder.setTitle("DELETE" + position)
-                .setMessage("DO YOU WANT TO DELETE?")
+                .setMessage(String.format("DO YOU WANT TO DELETE?\nThe selected row is: %d\n The database id is : %d",(position),selectedContact.getId()))
+
 
 
                 .setPositiveButton("YES", (click, b) -> {
