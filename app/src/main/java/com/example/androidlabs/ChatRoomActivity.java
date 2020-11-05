@@ -60,6 +60,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                Message mio=new Message(mess,positive,newId);
                 elements.add(mio);
+                 System.out.println("new entered row:"+ mio.getMessage() + "," + mio.getId()+ ","+ mio.isSendMessage());
                 myAdapter.notifyDataSetChanged();
 
                 meaage.setText("");
@@ -84,6 +85,9 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                 Message mio=new Message(mess,negetive,newId);
                 elements.add(mio);
+
+                System.out.println("new entered row:"+ mio.getMessage() + "," + mio.getId()+ ","+ mio.isSendMessage());
+
 
                 myAdapter.notifyDataSetChanged();
 
@@ -112,16 +116,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
         Log.e("RowsNumber", String.valueOf(c.getCount()));
 
-        c.moveToPosition(-1);
-
-        while(c.moveToNext())
-        {
-
-            String name = c.getString(2);
-            Boolean sr =  c.getInt(1)==1 ? true: false;
-            long id = c.getLong(0);
-            Log.e("RowAmount"  , name + ","  + sr + "," + id );
-
+        for(Message m:elements){
+           Log.e("RowAmount"  , m.getMessage()+ ","  + m.isSendMessage() + "," + m.getId());
 
         }
 
