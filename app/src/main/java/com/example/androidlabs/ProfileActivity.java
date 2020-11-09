@@ -52,12 +52,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
 
         } );
-
-
-
         Log.e("PROFILE_ACTIVITY","function is" + "onCreate");
-
-
     }
 
 
