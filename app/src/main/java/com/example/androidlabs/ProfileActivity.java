@@ -43,6 +43,16 @@ public class ProfileActivity extends AppCompatActivity {
 
         } );
 
+        Button whether=findViewById(R.id.button4);
+        whether.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v){
+                Intent goWhether= new Intent(ProfileActivity.this, WeatherForecast.class);
+                startActivity(goWhether);
+            }
+
+        } );
+
 
 
         Log.e("PROFILE_ACTIVITY","function is" + "onCreate");
