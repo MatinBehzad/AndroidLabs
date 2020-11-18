@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,18 +32,43 @@ public class ChatRoomActivity extends AppCompatActivity {
     private ArrayList<Message> elements = new ArrayList<>();
     public SQLiteDatabase db;
     public ListView list;
+    private boolean onPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_chat_room);
+       list = (ListView)findViewById(R.id.theListView);
 
-        boolean isTablet = findViewById(R.id.FrameLayout) != null;//for test to see if the emulator in phone or tablet
+        FrameLayout layout = findViewById(R.id.FrameLayout);
+        onPhone = (layout==null);
 
-        list = (ListView)findViewById(R.id.theListView);
 
         list.setAdapter(myAdapter = new MyListAdapter());
         loadDataFromDatabase();
+
+        //new long click listener uses Fragments
+        list.setOnItemLongClickListener( (parent,view,position,id) -> {
+            Bundle data = new Bundle();
+            data.putString("MESSAGE", elements.get(position).getMessage());
+            data.putBoolean("IS_SEND", elements.get(position).isSendMessage());
+            data.putLong("ID", elements.get(position).getId());
+            if(onPhone) {
+                Intent goToFrag = new Intent(ChatRoomActivity.this,EmptyActivity.class);
+                goToFrag.putExtras(data);
+                startActivity(goToFrag);
+
+            } else {
+                DetailsFragment dFragment = new DetailsFragment();
+                dFragment.setArguments( data );
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.FrameLayout, dFragment)
+                        .commit();
+
+            }
+            return false;
+        });
 
         list.setOnItemClickListener(( parent,  view,  position,  id) -> {
             showContact( position );
@@ -100,32 +126,6 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 
         });
-
-        list.setOnItemClickListener((list, item, position, id) -> {
-            //Create a bundle to pass data to the new fragment
-            Bundle dataToPass = new Bundle();
-            dataToPass.putString("Message", elements.get(position).getMessage());
-            dataToPass.putBoolean("Is-Send", elements.get(position).isSendMessage());
-            dataToPass.putLong("ID=", elements.get(position).getId());
-
-            if(isTablet)
-            {
-                DetailsFragment dFragment = new DetailsFragment(); //add a DetailFragment
-                dFragment.setArguments( dataToPass ); //pass it a bundle for information
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.FrameLayout, dFragment) //Add the fragment in FrameLayout
-                        .commit(); //actually load the fragment. Calls onCreate() in DetailFragment
-            }
-            else //isPhone
-            {
-                Intent nextActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
-                nextActivity.putExtras(dataToPass); //send data to next activity
-                startActivity(nextActivity); //make the transition
-            }
-        });
-
-
 
 
     }

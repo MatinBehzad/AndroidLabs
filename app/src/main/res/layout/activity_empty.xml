@@ -7,5 +7,5 @@
     android:layout_height="match_parent"
     android:layout_alignRight="@id/theListView"
     android:layout_marginRight="-349dp"
-    android:background="@color/colorAccent"
+
     />

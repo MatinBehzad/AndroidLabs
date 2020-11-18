@@ -18,7 +18,7 @@
         android:usesCleartextTraffic="true" >
         <activity android:name=".EmptyActivity" >
         </activity>
-        <activity android:name=".Layoutsw720dpActivity" />
+
         <activity android:name=".WeatherForecast" />
         <activity android:name=".ChatRoomActivity" />
         <activity android:name=".ProfileActivity" />

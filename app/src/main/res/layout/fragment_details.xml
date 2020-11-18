@@ -1,12 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorAccent"
-    android:id="@+id/fragmentLocation">
+<?xml version="1.0" encoding="UTF-8"?>
 
-    <TextView
+<FrameLayout tools:context=".DetailsFragment"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/fragmentLocation"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+
+<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30dp"
@@ -33,4 +38,6 @@
         android:layout_alignBottom="@+id/idText"
         android:layout_marginBottom="-42dp"
         android:text="is send message" />
-</RelativeLayout>
+
+    </RelativeLayout>
+</FrameLayout>
