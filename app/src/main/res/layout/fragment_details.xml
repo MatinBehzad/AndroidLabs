@@ -9,7 +9,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Message Here"
         android:textSize="30dp"
         android:id="@+id/message"/>
 
@@ -17,7 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/idText"
-        android:text="ID="
         android:textSize="30dp"
         android:layout_below="@id/message"/>
 
@@ -26,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:text="Hide"
-        android:id="@+id/finishButton"/>
+        android:id="@+id/HideButton"/>
 
     <CheckBox
         android:id="@+id/checkBox"
