@@ -4,6 +4,7 @@ package com.example.androidlabs;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -25,16 +26,20 @@ import static android.widget.Toast.LENGTH_LONG;
 
 public class ChatRoomActivity extends AppCompatActivity {
 
+
     private MyListAdapter myAdapter;
     private ArrayList<Message> elements = new ArrayList<>();
     public SQLiteDatabase db;
+    public ListView list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat_room);
+       setContentView(R.layout.activity_chat_room);
 
-        ListView list = (ListView)findViewById(R.id.theListView);
+        boolean isTablet = findViewById(R.id.FrameLayout) != null;//for test to see if the emulator in phone or tablet
+
+        list = (ListView)findViewById(R.id.theListView);
 
         list.setAdapter(myAdapter = new MyListAdapter());
         loadDataFromDatabase();
@@ -95,6 +100,31 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 
         });
+
+        list.setOnItemClickListener((list, item, position, id) -> {
+            //Create a bundle to pass data to the new fragment
+            Bundle dataToPass = new Bundle();
+            dataToPass.putString("Message", elements.get(position).getMessage());
+            dataToPass.putBoolean("Is-Send", elements.get(position).isSendMessage());
+            dataToPass.putLong("ID=", elements.get(position).getId());
+
+            if(isTablet)
+            {
+                DetailsFragment dFragment = new DetailsFragment(); //add a DetailFragment
+                dFragment.setArguments( dataToPass ); //pass it a bundle for information
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.FrameLayout, dFragment) //Add the fragment in FrameLayout
+                        .commit(); //actually load the fragment. Calls onCreate() in DetailFragment
+            }
+            else //isPhone
+            {
+                Intent nextActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
+                nextActivity.putExtras(dataToPass); //send data to next activity
+                startActivity(nextActivity); //make the transition
+            }
+        });
+
 
 
 
@@ -182,6 +212,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                 .create().show();
     }
 //•	You can select a chat row to view an AlertDialog with the index and database id	+1
+
 
     private class MyListAdapter extends BaseAdapter {
 
