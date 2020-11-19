@@ -3,6 +3,7 @@ package com.example.androidlabs;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Button;
 
 public class EmptyActivity extends AppCompatActivity {
 
@@ -21,5 +22,7 @@ public class EmptyActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.FrameLayout, dFragment)
                 .commit();
+
+
     }
 }

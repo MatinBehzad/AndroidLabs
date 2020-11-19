@@ -88,6 +88,7 @@ public class DetailsFragment extends Fragment {
 
         Button hide = result.findViewById(R.id.HideButton);
         hide.setOnClickListener( e -> {
+
             parentActivity.getSupportFragmentManager().beginTransaction().remove(this).commit();
         });
 
