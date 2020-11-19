@@ -90,6 +90,7 @@ public class DetailsFragment extends Fragment {
         hide.setOnClickListener( e -> {
 
             parentActivity.getSupportFragmentManager().beginTransaction().remove(this).commit();
+
         });
 
         return result;
@@ -98,5 +99,6 @@ public class DetailsFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         parentActivity = (AppCompatActivity)context;
+
     }
 }

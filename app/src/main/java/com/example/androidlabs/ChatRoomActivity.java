@@ -3,6 +3,8 @@ package com.example.androidlabs;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -202,6 +204,11 @@ public class ChatRoomActivity extends AppCompatActivity {
                     deleteContact(selectedContact); //remove the contact from database
                     Toast.makeText(this,"deleted item id:"+myAdapter.getItemId(position),Toast.LENGTH_LONG).show();
                     elements.remove(position); //remove the contact from contact list
+
+                    Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.FrameLayout);
+                    if (fragment!=null)
+                        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
                     myAdapter.notifyDataSetChanged(); //there is one less item so update the list
 
 
