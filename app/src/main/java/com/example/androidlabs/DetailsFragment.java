@@ -90,6 +90,7 @@ public class DetailsFragment extends Fragment {
         hide.setOnClickListener( e -> {
 
             parentActivity.getSupportFragmentManager().beginTransaction().remove(this).commit();
+            if (parentActivity instanceof  EmptyActivity) parentActivity.finish();
 
         });
 
