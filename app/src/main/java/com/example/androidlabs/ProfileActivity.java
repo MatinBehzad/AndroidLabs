@@ -46,12 +46,25 @@ public class ProfileActivity extends AppCompatActivity {
         Button whether=findViewById(R.id.button4);
         whether.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v){
-                Intent goWhether= new Intent(ProfileActivity.this, WeatherForecast.class);
-                startActivity(goWhether);
-            }
+                                       public void onClick(View v) {
+                                           Intent goWhether = new Intent(ProfileActivity.this, WeatherForecast.class);
+                                           startActivity(goWhether);
+                                       }
 
-        } );
+                                   });
+
+        Button toolbar= findViewById(R.id.button5);
+            toolbar.setOnClickListener(new View.OnClickListener() {
+
+                public void onClick(View v) {
+                    Intent goToolbar = new Intent(ProfileActivity.this, TestToolbar.class);
+                    startActivityForResult();
+
+                                           }
+                                       });
+
+
+
         Log.e("PROFILE_ACTIVITY","function is" + "onCreate");
     }
 
