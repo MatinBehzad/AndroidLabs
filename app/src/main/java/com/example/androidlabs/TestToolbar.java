@@ -91,10 +91,10 @@ public class TestToolbar extends AppCompatActivity implements NavigationView.OnN
 
         switch(item.getItemId())
         {
-            case R.id.:
+            case R.id.chat:
                 message = "You clicked item 1";
                 break;
-            case R.id.car:
+            case R.id.weather:
                 message = "You clicked on the search";
                 break;
 
@@ -104,6 +104,6 @@ public class TestToolbar extends AppCompatActivity implements NavigationView.OnN
         drawerLayout.closeDrawer(GravityCompat.START);
 
         Toast.makeText(this, "NavigationDrawer: " + message, Toast.LENGTH_LONG).show();
-        return false;
+        return true;
     }
 }

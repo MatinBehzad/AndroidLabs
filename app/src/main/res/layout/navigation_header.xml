@@ -14,25 +14,29 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/happy" />
-    <TextView
+
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/chat"
         android:textSize="30dp"
         android:text="Chat page"
         android:drawableLeft="@drawable/chat"
         android:layout_alignParentBottom="true" />
-    <TextView
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30dp"
-        android:text="Whether"
+        android:id="@+id/weather"
+        android:text="Weather"
         android:drawableLeft="@drawable/weather"
         android:layout_alignParentBottom="true" />
 
-    <TextView
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30dp"
+        android:id="@+id/home"
         android:layout_alignParentBottom="true"
         android:drawableLeft="@drawable/home"
         android:text="Go back to Login" />
