@@ -58,7 +58,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 public void onClick(View v) {
                     Intent goToolbar = new Intent(ProfileActivity.this, TestToolbar.class);
-                    startActivityForResult();
+                    startActivity(goToolbar);
 
                                            }
                                        });
