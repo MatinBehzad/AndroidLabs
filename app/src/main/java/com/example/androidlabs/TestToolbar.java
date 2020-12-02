@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
@@ -33,7 +34,7 @@ public class TestToolbar extends AppCompatActivity implements NavigationView.OnN
         toggle.syncState();
 
 
-        NavigationView navigationView = findViewById(R.id.navigation);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -84,7 +85,25 @@ public class TestToolbar extends AppCompatActivity implements NavigationView.OnN
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+    public boolean onNavigationItemSelected( MenuItem item) {
+
+        String message = null;
+
+        switch(item.getItemId())
+        {
+            case R.id.:
+                message = "You clicked item 1";
+                break;
+            case R.id.car:
+                message = "You clicked on the search";
+                break;
+
+        }
+
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+        drawerLayout.closeDrawer(GravityCompat.START);
+
+        Toast.makeText(this, "NavigationDrawer: " + message, Toast.LENGTH_LONG).show();
         return false;
     }
 }

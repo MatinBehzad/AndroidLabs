@@ -2,19 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:gravity="center"
+    android:background="@color/colorPrimary"
+
 >
 
+    <ImageView
+        android:layout_width="226dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/happy" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="30dp"
         android:text="Chat page"
         android:drawableLeft="@drawable/chat"
         android:layout_alignParentBottom="true" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="30dp"
         android:text="Whether"
         android:drawableLeft="@drawable/weather"
         android:layout_alignParentBottom="true" />
@@ -22,6 +32,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="30dp"
         android:layout_alignParentBottom="true"
         android:drawableLeft="@drawable/home"
         android:text="Go back to Login" />
