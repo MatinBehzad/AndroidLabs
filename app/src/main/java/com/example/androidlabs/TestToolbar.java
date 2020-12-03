@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,7 +15,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
-public class TestToolbar extends AppCompatActivity {
+public class TestToolbar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     DrawerLayout drawer;
     NavigationView navigationView;
@@ -36,51 +37,27 @@ public class TestToolbar extends AppCompatActivity {
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        setupDrawerContent(navigationView);
 
 
     }
 
-    private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        selectDrawerItem(menuItem);
-                        return true;
-                    }
-                });
-    }
 
-    public void selectDrawerItem(MenuItem menuItem) {
 
-        String message = null;
-        // Create a new fragment and specify the fragment to show based on nav item clicked
-        switch(menuItem.getItemId())
-        {
-            case R.id.chat:
-                message = "You clicked item 1";
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        drawer.closeDrawers();
+        switch (item.getItemId()) {
+            case R.id.heart:
+                startActivity(new Intent(this, ChatRoomActivity.class));
                 break;
-            case R.id.weather:
-                message = "You clicked on the search";
-                Toast.makeText(this, "NavigationDrawer: " + message, Toast.LENGTH_LONG).show();
-                break;
-
         }
-
-        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
-        drawerLayout.closeDrawer(GravityCompat.START);
-
-        Toast.makeText(this, "NavigationDrawer: " + message, Toast.LENGTH_LONG).show();
-
-
+        return true;
     }
 
-
-
-        @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
