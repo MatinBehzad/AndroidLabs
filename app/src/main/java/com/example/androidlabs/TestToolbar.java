@@ -14,7 +14,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
-public class TestToolbar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class TestToolbar extends AppCompatActivity {
+
+    DrawerLayout drawer;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,18 +30,57 @@ public class TestToolbar extends AppCompatActivity implements NavigationView.OnN
         setSupportActionBar(tBar);
 
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
                 drawer, tBar, R.string.open, R.string.close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        setupDrawerContent(navigationView);
+
+
     }
 
-    @Override
+    private void setupDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        selectDrawerItem(menuItem);
+                        return true;
+                    }
+                });
+    }
+
+    public void selectDrawerItem(MenuItem menuItem) {
+
+        String message = null;
+        // Create a new fragment and specify the fragment to show based on nav item clicked
+        switch(menuItem.getItemId())
+        {
+            case R.id.chat:
+                message = "You clicked item 1";
+                break;
+            case R.id.weather:
+                message = "You clicked on the search";
+                Toast.makeText(this, "NavigationDrawer: " + message, Toast.LENGTH_LONG).show();
+                break;
+
+        }
+
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+        drawerLayout.closeDrawer(GravityCompat.START);
+
+        Toast.makeText(this, "NavigationDrawer: " + message, Toast.LENGTH_LONG).show();
+
+
+    }
+
+
+
+        @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
@@ -84,26 +126,5 @@ public class TestToolbar extends AppCompatActivity implements NavigationView.OnN
         return true;
     }
 
-    @Override
-    public boolean onNavigationItemSelected( MenuItem item) {
 
-        String message = null;
-
-        switch(item.getItemId())
-        {
-            case R.id.chat:
-                message = "You clicked item 1";
-                break;
-            case R.id.weather:
-                message = "You clicked on the search";
-                break;
-
-        }
-
-        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
-        drawerLayout.closeDrawer(GravityCompat.START);
-
-        Toast.makeText(this, "NavigationDrawer: " + message, Toast.LENGTH_LONG).show();
-        return true;
-    }
 }

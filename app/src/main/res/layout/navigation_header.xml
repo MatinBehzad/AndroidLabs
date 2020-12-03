@@ -15,7 +15,7 @@
         android:layout_marginBottom="15dp"
         android:background="@drawable/happy" />
 
-    <Button
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/chat"
@@ -23,7 +23,7 @@
         android:text="Chat page"
         android:drawableLeft="@drawable/chat"
         android:layout_alignParentBottom="true" />
-    <Button
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30dp"
@@ -32,7 +32,7 @@
         android:drawableLeft="@drawable/weather"
         android:layout_alignParentBottom="true" />
 
-    <Button
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30dp"

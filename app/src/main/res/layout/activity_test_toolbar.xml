@@ -6,9 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
-
-
-
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,7 +29,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
-            app:headerLayout="@layout/navigation_header"
+            app:headerLayout="@menu/menu2"
             android:id="@+id/nav_view"/>
 
     </androidx.drawerlayout.widget.DrawerLayout>
