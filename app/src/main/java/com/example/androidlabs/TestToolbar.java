@@ -45,7 +45,7 @@ public class TestToolbar extends AppCompatActivity implements NavigationView.OnN
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        drawer.closeDrawers();
+       // drawer.closeDrawers();
         switch (item.getItemId()) {
             case R.id.chat:
                 startActivity(new Intent(this, ChatRoomActivity.class));
@@ -54,7 +54,7 @@ public class TestToolbar extends AppCompatActivity implements NavigationView.OnN
                 startActivity(new Intent(this, WeatherForecast.class));
                 break;
             case R.id.home:
-                startActivity(new Intent(this, ProfileActivity.class));
+                startActivity(new Intent(this, MainActivity.class));
                 break;
         }
         return true;
