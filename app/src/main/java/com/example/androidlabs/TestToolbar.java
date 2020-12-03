@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
@@ -44,14 +43,18 @@ public class TestToolbar extends AppCompatActivity implements NavigationView.OnN
 
     }
 
-
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         drawer.closeDrawers();
         switch (item.getItemId()) {
-            case R.id.heart:
+            case R.id.chat:
                 startActivity(new Intent(this, ChatRoomActivity.class));
+                break;
+            case R.id.weather:
+                startActivity(new Intent(this, WeatherForecast.class));
+                break;
+            case R.id.home:
+                startActivity(new Intent(this, ProfileActivity.class));
                 break;
         }
         return true;
@@ -61,7 +64,7 @@ public class TestToolbar extends AppCompatActivity implements NavigationView.OnN
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.example_menu, menu);
+        inflater.inflate(R.menu.second,menu);
 
 
 	    /* slide 15 material:
@@ -88,14 +91,17 @@ public class TestToolbar extends AppCompatActivity implements NavigationView.OnN
         switch(item.getItemId())
         {
             //what to do when the menu item is selected:
-            case R.id.heart:
-                message = "You clicked heart item";
-                break;
             case R.id.car:
-                message = "You clicked on the car item";
+                message = "You clicked car item";
+                break;
+            case R.id.heart:
+                message = "You clicked on the heart item";
                 break;
             case R.id.book:
-                message = "You clicked on book item";
+                message = "You are clicking on overflow item";
+                break;
+            case R.id.hap:
+                message = "You are clicking on happy item";
                 break;
 
         }

@@ -7,7 +7,6 @@
     android:background="@color/colorPrimary"
 
 >
-
     <ImageView
         android:layout_width="226dp"
         android:layout_height="130dp"
@@ -19,26 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/chat"
-        android:textSize="30dp"
-        android:text="Chat page"
-        android:drawableLeft="@drawable/chat"
+        android:textSize="60dp"
+        android:text="Welcome"
         android:layout_alignParentBottom="true" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:id="@+id/weather"
-        android:text="Weather"
-        android:drawableLeft="@drawable/weather"
-        android:layout_alignParentBottom="true" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:id="@+id/home"
-        android:layout_alignParentBottom="true"
-        android:drawableLeft="@drawable/home"
-        android:text="Go back to Login" />
 
 </LinearLayout>
